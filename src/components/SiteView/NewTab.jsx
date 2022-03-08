@@ -1,6 +1,6 @@
 import "./newTab.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setTabsRedux, setNowTabRedux } from "./../../store/actions/myAction";
+import { setTabsRedux } from "./../../store/actions/myAction";
 import { useEffect } from "react";
 
 const NewTab = () => {
@@ -17,6 +17,7 @@ const NewTab = () => {
         <img
           src="https://img.icons8.com/external-prettycons-flat-prettycons/32/000000/external-messenger-social-media-prettycons-flat-prettycons.png"
           width={80}
+          alt="something"
           className="border border-2 m-2 p-1"
           onClick={() => {
             let cp = [...reduxTabs];
@@ -28,6 +29,7 @@ const NewTab = () => {
           src="https://img.icons8.com/color/80/000000/youtube-play.png"
           width={80}
           className="border border-2 m-2"
+          alt="something"
           onClick={() => {
             let cp = [...reduxTabs];
             cp[reduxSelectedTab] = 2;
@@ -38,6 +40,7 @@ const NewTab = () => {
           src="https://en.apkshki.com/storage/4369/icon_5f0f28769f545_4369_w256.png"
           width={80}
           className="border border-2 m-2 p-2"
+          alt="something"
           onClick={() => {
             let cp = [...reduxTabs];
             cp[reduxSelectedTab] = 9;

@@ -1,11 +1,11 @@
-import { tab } from "@testing-library/user-event/dist/tab";
-import { useEffect, useState } from "react";
+// import { tab } from "@testing-library/user-event/dist/tab";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setTabsRedux, setNowTabRedux } from "./../store/actions/myAction";
 import "./header.css";
 const Header = (props) => {
-  const [tabs, setTabs] = useState([0]);
-  const [selectedTab, setSelectedTab] = useState(0);
+  // const [tabs, setTabs] = useState([0]);
+  // const [selectedTab, setSelectedTab] = useState(0);
   const dispatch = useDispatch();
   const reduxTabs = useSelector((state) => state.listTatCa.tabs);
   const reduxSelectedTab = useSelector((state) => state.listTatCa.nowTabs);
@@ -79,6 +79,7 @@ const Header = (props) => {
           >
             <img
               src="https://img.icons8.com/ios-filled/50/000000/chrome--v1.png"
+              alt="something"
               width={30}
             />{" "}
             <span className="d-sm-inline-block align-middle d-none ps-1">
@@ -86,6 +87,7 @@ const Header = (props) => {
             </span>
             <img
               src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png"
+              alt="something"
               className="ms-3 header-tab__close"
               width={15}
               onClick={() => rmTab(pos)}
@@ -109,12 +111,14 @@ const Header = (props) => {
             <img
               src="https://img.icons8.com/external-prettycons-flat-prettycons/47/000000/external-messenger-social-media-prettycons-flat-prettycons.png"
               width={30}
+              alt="something"
             />{" "}
             <span className="d-sm-inline-block align-middle d-none ps-1">
               Messenger{" "}
             </span>
             <img
               src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png"
+              alt="something"
               className="ms-3"
               width={15}
               onClick={() => rmTab(pos)}
@@ -136,6 +140,7 @@ const Header = (props) => {
           >
             <img
               src="https://img.icons8.com/color/48/000000/youtube-play.png"
+              alt="something"
               width={30}
             />
             <span className="d-sm-inline-block align-middle d-none ps-1">
@@ -144,6 +149,7 @@ const Header = (props) => {
             <img
               src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png"
               className="ms-3"
+              alt="something"
               width={15}
               onClick={() => rmTab(pos)}
             />
@@ -163,12 +169,16 @@ const Header = (props) => {
             id={"nav-" + pos}
           >
             <img
+              alt="something"
               src="https://www.svgrepo.com/show/265090/error.svg"
               width={30}
             />
-            <span className="d-sm-inline-block align-middle d-none ps-1">404</span>
+            <span className="d-sm-inline-block align-middle d-none ps-1">
+              404
+            </span>
             <img
               src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png"
+              alt="something"
               className="ms-3"
               width={15}
               onClick={() => rmTab(pos)}
@@ -199,6 +209,7 @@ const Header = (props) => {
           >
             <img
               src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/50/000000/external-plus-user-interface-tanah-basah-glyph-tanah-basah-2.png"
+              alt="something"
               width={30}
             />
           </button>

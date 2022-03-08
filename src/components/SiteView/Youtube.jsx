@@ -1,5 +1,5 @@
 import "./youtube.css";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 
 const Youtube = () => {
   const data = [
@@ -131,6 +131,7 @@ const Youtube = () => {
           <img
             src="https://img.icons8.com/external-bearicons-glyph-bearicons/64/000000/external-User-essential-collection-bearicons-glyph-bearicons.png"
             className="youtube-user"
+            alt="something"
           />{" "}
         </div>
       </div>
@@ -181,6 +182,7 @@ const Youtube = () => {
             {" "}
             <img
               src="https://img.icons8.com/external-bearicons-glyph-bearicons/64/000000/external-User-essential-collection-bearicons-glyph-bearicons.png"
+              alt="something"
               className="youtube-user d-inline-block align-middle"
             />{" "}
             <div className="d-inline-block align-middle">
@@ -203,6 +205,7 @@ const Youtube = () => {
                 <div className="row mb-2" onClick={() => setNowShow(i)}>
                   <img
                     src={"https://img.youtube.com/vi/" + e.id + "/1.jpg"}
+                    alt="something"
                     className="col-5"
                   />
                   <div className="col-7 text-start  youtube-recomment-title">
