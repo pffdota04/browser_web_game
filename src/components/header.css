@@ -1,0 +1,16 @@
+.header {
+  height: 60px;
+}
+
+.header-tab__close {
+  z-index: 999;
+}
+
+.all-tab {
+  /* overflow: hidden; */
+  /* position:relative; */
+}
+
+.all-tab button {
+min-height: 60px
+}

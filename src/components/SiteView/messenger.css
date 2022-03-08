@@ -1,0 +1,14 @@
+.messenger-user div {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: calc(100% - 75px - 1rem);
+}
+
+.messenger-left {
+  min-width: 115px;
+}
+
+.messenger{
+  overflow: hidden;
+}

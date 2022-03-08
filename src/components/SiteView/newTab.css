@@ -1,0 +1,16 @@
+.newTab {
+  width: 100vw;
+  height: 100%;
+  background-image: url("https://img.onmanorama.com/content/dam/mm/en/kerala/top-news/images/2022/1/17/death-body.jpg");
+  background-position: center center;
+  background-repeat: no-repeat no-repeat;
+  background-size: cover;
+}
+
+.newTab-icon {
+  position: absolute;
+  bottom: 10rem;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.231);
+}
