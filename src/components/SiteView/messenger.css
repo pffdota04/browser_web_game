@@ -6,9 +6,38 @@
 }
 
 .messenger-left {
-  min-width: 115px;
+  min-width: 40px;
 }
 
-.messenger{
+.messenger-right {
+  min-width: 230px;
+}
+
+.messenger {
   overflow: hidden;
+}
+
+.chat-content-user {
+  height: calc(100vh - 60px - 90px - 90px);
+  overflow-y: scroll;
+}
+
+.messChatName {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+}
+
+.choose-item:hover {
+  transition: all 0.3s;
+  border: solid 3px rgb(255, 255, 1);
+  background-color: rgb(255, 0, 0) !important;
+}
+
+@media (max-width: 400px) {
+  .messChatName {
+    width: 150px;
+  }
 }

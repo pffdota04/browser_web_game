@@ -5,6 +5,13 @@ export const setTabsRedux = (data) => {
   };
 };
 
+export const setNowChat = (data) => {
+  return {
+    type: "SET_CHAT",
+    payload: data,
+  };
+};
+
 export const setNowTabRedux = (data) => {
   return {
     type: "SET_NOW_TAB",

@@ -17,9 +17,13 @@ ul {
   background-color: rgb(193, 193, 193);
 }
 
+.hover-point {
+  cursor: pointer;
+}
+
 /* CUSTOM BOOTSTRAP */
 .nav-tabs .nav-link:focus,
 .nav-tabs .nav-link:hover {
   isolation: unset !important;
-  background-color: rgba(255, 255, 255, 0.497) ;
+  background-color: rgba(255, 255, 255, 0.497);
 }

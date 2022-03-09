@@ -199,10 +199,14 @@ const Youtube = () => {
           dolorem saepe architecto.
         </div>
         <div className="col-12 col-lg-4">
+          <p className="text-start fw-bold mb-1">Video gợi ý</p>
           {data.map((e, i) => {
             if (i != nowShow)
               return (
-                <div className="row mb-2" onClick={() => setNowShow(i)}>
+                <div
+                  className="row mb-2 hover-point"
+                  onClick={() => setNowShow(i)}
+                >
                   <img
                     src={"https://img.youtube.com/vi/" + e.id + "/1.jpg"}
                     alt="something"
