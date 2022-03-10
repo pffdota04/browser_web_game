@@ -90,6 +90,11 @@ const convertChat = [
   "Gấp, Backend bị DDOS sập rồi",
   "Bạn ơi, lỗ nhị lủng rồi",
   "imghttps://taoanhonline.com/wp-content/uploads/2020/02/anh-tam-trang-14.jpg?v=1582376124",
+  "cuuws",
+  "sos",
+  "t bị ai bắt cóc r",
+  "giupz tao với toao sợ quá",
+  "tới giwof hút ròi homie",
   // END CHAT CÓ SẴN
   "1111",
   "1111",
