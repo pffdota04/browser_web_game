@@ -103,6 +103,10 @@ const initialState = {
     ],
     [
       {
+        from: 0,
+        chat: "2 ngày trước",
+      },
+      {
         from: -1,
         chat: 42,
       },
@@ -153,6 +157,10 @@ const initialState = {
       },
     ],
     [
+      {
+        from: 0,
+        chat: "2 ngày trước",
+      },
       {
         from: 1,
         chat: 51,

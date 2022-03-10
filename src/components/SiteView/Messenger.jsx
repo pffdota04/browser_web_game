@@ -47,12 +47,16 @@ const Messenger = () => {
 
   useEffect(() => {
     setInit(false);
-    document.querySelector(".end-chat").scrollIntoView();
+    let a = document.querySelector(".chat-content-user");
+    // a.scrollTo(0, a.scrollHeight);
+    a.scrollTop = a.scrollHeight;
   }, []);
 
   useEffect(() => {
-    document.querySelector(".end-chat").scrollIntoView();
-  }, [nowChat]);
+    let a = document.querySelector(".chat-content-user");
+    a.scrollTop = a.scrollHeight;
+    console.log(".");
+  }, [chats, messMove0, messMove1, messMove2, messMove3, messMove4]);
 
   useEffect(() => {
     if (init === false) {
@@ -60,7 +64,9 @@ const Messenger = () => {
         let moveRefulf = ChatMove(messMove0);
         if (moveRefulf[0].length !== 0) {
           let copychat = [...chats];
-          moveRefulf[0].map((e) => copychat[0].push({ from: -1, chat: e }));
+          moveRefulf[0].map((e) => {
+            copychat[0].push({ from: -1, chat: e });
+          });
           dispatch(setChatContent(copychat));
         }
         setTyping(false);
@@ -218,9 +224,6 @@ const Messenger = () => {
               {/* {ChatMove(messMove0)[1][0]} */}
             </div>
           </div>
-          {console.log(ChatMove(messMove0)[1])}
-          {console.log(ChatMove(messMove1)[1])}
-          {console.log(ChatMove(messMove2)[1])}
           {((nowChat === 0 && ChatMove(messMove0)[1].length > 1) ||
             (nowChat === 1 && ChatMove(messMove1)[1].length > 1) ||
             (nowChat === 2 && ChatMove(messMove2)[1].length > 1) ||
@@ -359,7 +362,7 @@ const Messenger = () => {
                   }
                 >
                   {e.from === -1 ? (
-                    <li className="bg-secondary--fade d-inline-block p-2 rounded rounded-3 text-dark">
+                    <li className="bg-secondary--fade d-inline-block p-2 ms-1  rounded-right text-dark">
                       {convertChat[e.chat] !== undefined &&
                       convertChat[e.chat].slice(0, 3) === "img" ? (
                         <img
@@ -375,7 +378,7 @@ const Messenger = () => {
                       )}
                     </li>
                   ) : e.from === 1 ? (
-                    <li className="bg-primary d-inline-block p-2 rounded rounded-3 text-light">
+                    <li className="bg-primary d-inline-block p-2  me-1 rounded-left text-light">
                       {/* {convertChat[e.chat]} */}
                       {convertChat[e.chat] !== undefined &&
                       convertChat[e.chat].slice(0, 3) === "img" ? (
@@ -396,14 +399,20 @@ const Messenger = () => {
                   )}
                 </div>
               ))}
-              {typing && "Đang nhập"}
+              {/* {typing && "Đang nhập"} */}
               <div className=" end-chat"></div>
             </ul>
           </div>
-          <div className="your-choose border border-1 border-bottom-3">
-            <p className="text-center m-0">Gửi tin nhắn</p>
-            {!typing && selectMove()}
-          </div>
+          {!typing ? (
+            <div className="your-choose border border-1 border-bottom-3">
+              {/* <p className="text-center m-0">Gửi tin nhắn</p> */}
+              {selectMove()}
+            </div>
+          ) : (
+            <div className="text-center border border-1 border-bottom-3">
+              Đang chờ phản hồi
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -35,12 +35,20 @@
   background-color: rgb(255, 0, 0) !important;
 }
 
-.send-img{
+.send-img {
   max-width: 300px;
   min-width: 200px;
 }
 
+.rounded-right {
+  border-bottom-right-radius: 0.45rem !important;
+  border-top-right-radius: 0.45rem !important;
+}
 
+.rounded-left {
+  border-bottom-left-radius: 0.45rem !important;
+  border-top-left-radius: 0.45rem !important;
+}
 
 @media (max-width: 400px) {
   .messChatName {
