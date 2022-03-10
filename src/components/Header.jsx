@@ -78,7 +78,7 @@ const Header = (props) => {
             <img
               src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png"
               alt="something"
-              className="ms-3 header-tab__close"
+              className="ms-3 header-tab__close close-tab-button"
               width={15}
               onClick={() => rmTab(pos)}
             />
@@ -109,7 +109,7 @@ const Header = (props) => {
             <img
               src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png"
               alt="something"
-              className="ms-3"
+              className="ms-3 close-tab-button"
               width={15}
               onClick={() => rmTab(pos)}
             />
@@ -138,7 +138,7 @@ const Header = (props) => {
             </span>
             <img
               src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png"
-              className="ms-3"
+              className="ms-3 close-tab-button"
               alt="something"
               width={15}
               onClick={() => rmTab(pos)}
@@ -169,7 +169,7 @@ const Header = (props) => {
             <img
               src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png"
               alt="something"
-              className="ms-3"
+              className="ms-3 close-tab-button"
               width={15}
               onClick={() => rmTab(pos)}
             />
@@ -191,7 +191,7 @@ const Header = (props) => {
           })}
 
           <button
-            class="nav-link"
+            class="nav-link close-tab-button"
             onClick={() => {
               dispatch(setTabsRedux([...reduxTabs, 0]));
             }}
