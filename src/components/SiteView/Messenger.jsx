@@ -1,7 +1,18 @@
 import "./messenger.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setNowChat } from "./../../store/actions/myAction";
+import {
+  setNowChat,
+  setChatContent,
+  setMessRedux,
+  setMessRedux0,
+  setMessRedux1,
+  setMessRedux2,
+  setMessRedux3,
+  setMessRedux4,
+} from "./../../store/actions/myAction";
 import convertChat from "./../../chatList";
+import ChatMove from "./../../chatMove";
+import { useEffect, useState } from "react";
 const chatName = [
   "❤️❤️ Crush ❤️❤️",
   "Long Homie 🌿",
@@ -22,18 +33,242 @@ const chatOnline = ["true", "3h ago", "8h ago", "4d ago", "1d ago"];
 const Messenger = () => {
   const nowChat = useSelector((state) => state.listTatCa.nowChat);
   const chats = useSelector((state) => state.listTatCa.chats);
+  const messMove = useSelector((state) => state.listTatCa.messMove);
+  const messMove0 = useSelector((state) => state.listTatCa.messMove0);
+  const messMove1 = useSelector((state) => state.listTatCa.messMove1);
+  const messMove2 = useSelector((state) => state.listTatCa.messMove2);
+  const messMove3 = useSelector((state) => state.listTatCa.messMove3);
+  const messMove4 = useSelector((state) => state.listTatCa.messMove4);
+
+  const [typing, setTyping] = useState(false);
+  const [init, setInit] = useState(true);
+
   const dispatch = useDispatch();
 
-  const renderChat = (e, i) => {
-    return e.from === 0 ? (
-      <li className="text-start bg-secondary--fade d-inline-block p-1 rounded rounded-3">
-        {convertChat[e.chat]}
-      </li>
-    ) : (
-      <li className=" text-end bg-primary d-inline-block p-1 rounded rounded-3">
-        {convertChat[e.chat]}
-      </li>
-    );
+  useEffect(() => {
+    setInit(false);
+    document.querySelector(".end-chat").scrollIntoView();
+  }, []);
+
+  useEffect(() => {
+    document.querySelector(".end-chat").scrollIntoView();
+  }, [nowChat]);
+
+  useEffect(() => {
+    if (init === false) {
+      setTimeout(() => {
+        let moveRefulf = ChatMove(messMove0);
+        if (moveRefulf[0].length !== 0) {
+          let copychat = [...chats];
+          moveRefulf[0].map((e) => copychat[0].push({ from: -1, chat: e }));
+          dispatch(setChatContent(copychat));
+        }
+        setTyping(false);
+      }, 2000);
+    }
+  }, [messMove0]);
+
+  useEffect(() => {
+    if (init === false) {
+      setTimeout(() => {
+        let moveRefulf = ChatMove(messMove1);
+        if (moveRefulf[0].length !== 0) {
+          let copychat = [...chats];
+          moveRefulf[0].map((e) => copychat[1].push({ from: -1, chat: e }));
+          dispatch(setChatContent(copychat));
+        }
+        setTyping(false);
+      }, 2000);
+    }
+  }, [messMove1]);
+
+  useEffect(() => {
+    if (init === false) {
+      setTimeout(() => {
+        let moveRefulf = ChatMove(messMove4);
+        if (moveRefulf[0].length !== 0) {
+          let copychat = [...chats];
+
+          moveRefulf[0].map((e) => copychat[4].push({ from: -1, chat: e }));
+          dispatch(setChatContent(copychat));
+        }
+        setTyping(false);
+        return;
+      }, 2000);
+    }
+  }, [messMove4]);
+
+  useEffect(() => {
+    if (init === false) {
+      setTimeout(() => {
+        let moveRefulf = ChatMove(messMove3);
+        if (moveRefulf[0].length !== 0) {
+          let copychat = [...chats];
+          moveRefulf[0].map((e) => copychat[3].push({ from: -1, chat: e }));
+          dispatch(setChatContent(copychat));
+        }
+        setTyping(false);
+      }, 2000);
+    }
+  }, [messMove3]);
+
+  useEffect(() => {
+    if (init === false) {
+      setTimeout(() => {
+        let moveRefulf = ChatMove(messMove2);
+        if (moveRefulf[0].length !== 0) {
+          let copychat = [...chats];
+          moveRefulf[0].map((e) => copychat[2].push({ from: -1, chat: e }));
+          dispatch(setChatContent(copychat));
+        }
+        setTyping(false);
+      }, 2000);
+    }
+  }, [messMove2]);
+
+  const chooseMove = (To) => {
+    document.querySelector(".end-chat").scrollIntoView();
+    setTyping(true);
+    switch (nowChat) {
+      case 0: {
+        dispatch(setMessRedux0(To));
+        let copychat = [...chats];
+        copychat[0].push({ from: 1, chat: To });
+        return;
+      }
+      case 1: {
+        dispatch(setMessRedux1(To));
+        let copychat = [...chats];
+        copychat[1].push({ from: 1, chat: To });
+        return;
+      }
+      case 2: {
+        dispatch(setMessRedux2(To));
+        let copychat = [...chats];
+        copychat[2].push({ from: 1, chat: To });
+        return;
+      }
+      case 3: {
+        dispatch(setMessRedux3(To));
+        let copychat = [...chats];
+        copychat[3].push({ from: 1, chat: To });
+        return;
+      }
+      case 4: {
+        dispatch(setMessRedux4(To));
+        let copychat = [...chats];
+        copychat[4].push({ from: 1, chat: To });
+        return;
+      }
+      default:
+        break;
+    }
+  };
+
+  const selectMove = () => {
+    if (ChatMove(messMove0)[1][0] == -1) alert("YOU LOSE");
+    if (nowChat === 3) {
+      return (
+        <div className="row text-center m-0 text-light">
+          <div className="col-12 col-sm-6 p-1 text-dark mx-auto">
+            Bạn không thể gửi tin nhắn
+          </div>{" "}
+        </div>
+      );
+    } else
+      return (
+        <div className="row text-center m-0 text-light">
+          <div className={"col-12 col-sm-6 p-1  mx-auto"}>
+            <div
+              className="m-0 w-100 bg-danger choose-item fw-bold hover-point"
+              onClick={() => {
+                switch (nowChat) {
+                  case 0:
+                    chooseMove(ChatMove(messMove0)[1][0]);
+                    break;
+                  case 1:
+                    chooseMove(ChatMove(messMove1)[1][0]);
+                    break;
+                  case 2:
+                    chooseMove(ChatMove(messMove2)[1][0]);
+                    break;
+                  case 3:
+                    chooseMove(ChatMove(messMove3)[1][0]);
+                    break;
+                  case 4:
+                    chooseMove(ChatMove(messMove4)[1][0]);
+                    break;
+                  default:
+                    break;
+                }
+              }}
+            >
+              {/* {convertChat[ChatMove(messMove0)[1][0]]} */}
+              {nowChat === 0
+                ? convertChat[ChatMove(messMove0)[1][0]]
+                : nowChat === 1
+                ? convertChat[ChatMove(messMove1)[1][0]]
+                : nowChat === 2
+                ? convertChat[ChatMove(messMove2)[1][0]]
+                : nowChat === 3
+                ? convertChat[ChatMove(messMove3)[1][0]]
+                : convertChat[ChatMove(messMove4)[1][0]]}
+
+              {/* _{" "} */}
+              {/* {ChatMove(messMove0)[1][0]} */}
+            </div>
+          </div>
+          {console.log(ChatMove(messMove0)[1])}
+          {console.log(ChatMove(messMove1)[1])}
+          {console.log(ChatMove(messMove2)[1])}
+          {((nowChat === 0 && ChatMove(messMove0)[1].length > 1) ||
+            (nowChat === 1 && ChatMove(messMove1)[1].length > 1) ||
+            (nowChat === 2 && ChatMove(messMove2)[1].length > 1) ||
+            (nowChat === 3 && ChatMove(messMove3)[1].length > 1) ||
+            (nowChat === 4 && ChatMove(messMove4)[1].length > 1)) && (
+            <div className="col-12 col-sm-6 p-1">
+              <div
+                className="m-0 w-100 bg-danger choose-item  fw-bold hover-point"
+                onClick={() => {
+                  // chooseMove(ChatMove(messMove0)[1][1]);
+                  switch (nowChat) {
+                    case 0:
+                      chooseMove(ChatMove(messMove0)[1][1]);
+                      break;
+                    case 1:
+                      chooseMove(ChatMove(messMove1)[1][1]);
+                      break;
+                    case 2:
+                      chooseMove(ChatMove(messMove2)[1][1]);
+                      break;
+                    case 3:
+                      chooseMove(ChatMove(messMove3)[1][1]);
+                      break;
+                    case 4:
+                      chooseMove(ChatMove(messMove4)[1][1]);
+                      break;
+                    default:
+                      break;
+                  }
+                }}
+              >
+                {/* {convertChat[ChatMove(messMove0)[1][1]]} */}
+                {nowChat === 0
+                  ? convertChat[ChatMove(messMove0)[1][1]]
+                  : nowChat === 1
+                  ? convertChat[ChatMove(messMove1)[1][1]]
+                  : nowChat === 2
+                  ? convertChat[ChatMove(messMove2)[1][1]]
+                  : nowChat === 3
+                  ? convertChat[ChatMove(messMove3)[1][1]]
+                  : convertChat[ChatMove(messMove4)[1][1]]}
+                {/* _{" "} */}
+                {/* {ChatMove(messMove0)[1][1]} */}
+              </div>
+            </div>
+          )}
+        </div>
+      );
   };
 
   return (
@@ -45,7 +280,7 @@ const Messenger = () => {
             alt="something"
             className="d-none d-sm-inline-block"
           />{" "}
-          <strong>CHATS</strong>
+          <strong>CHATS {nowChat}</strong>
         </div>
         <hr />
         {chatName.map((e, i) => (
@@ -125,33 +360,49 @@ const Messenger = () => {
                 >
                   {e.from === -1 ? (
                     <li className="bg-secondary--fade d-inline-block p-2 rounded rounded-3 text-dark">
-                      {convertChat[e.chat]}
+                      {convertChat[e.chat] !== undefined &&
+                      convertChat[e.chat].slice(0, 3) === "img" ? (
+                        <img
+                          className="w-100 send-img"
+                          src={convertChat[e.chat].slice(
+                            3,
+                            convertChat[e.chat].length
+                          )}
+                          alt="img"
+                        />
+                      ) : (
+                        convertChat[e.chat]
+                      )}
                     </li>
                   ) : e.from === 1 ? (
                     <li className="bg-primary d-inline-block p-2 rounded rounded-3 text-light">
-                      {convertChat[e.chat]}
+                      {/* {convertChat[e.chat]} */}
+                      {convertChat[e.chat] !== undefined &&
+                      convertChat[e.chat].slice(0, 3) === "img" ? (
+                        <img
+                          src={convertChat[e.chat].slice(
+                            3,
+                            convertChat[e.chat].length
+                          )}
+                          alt="img"
+                          className="w-100  send-img"
+                        />
+                      ) : (
+                        convertChat[e.chat]
+                      )}
                     </li>
                   ) : (
                     e.from === 0 && e.chat
                   )}
                 </div>
               ))}
+              {typing && "Đang nhập"}
+              <div className=" end-chat"></div>
             </ul>
           </div>
           <div className="your-choose border border-1 border-bottom-3">
-            <p className="text-center m-0">Trả lời</p>
-            <div className="row text-center m-0 text-light">
-              <div className="col-12 col-sm-6 p-1">
-                <div className="m-0 w-100 bg-danger choose-item fw-bold hover-point">
-                  Ai biểu ngu
-                </div>
-              </div>
-              <div className="col-12 col-sm-6 p-1">
-                <div className="m-0 w-100 bg-danger choose-item  fw-bold hover-point">
-                  Cậu không sao chứ?
-                </div>
-              </div>
-            </div>
+            <p className="text-center m-0">Gửi tin nhắn</p>
+            {!typing && selectMove()}
           </div>
         </div>
       </div>

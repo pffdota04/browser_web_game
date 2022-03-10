@@ -9,7 +9,7 @@ const NewTab = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(reduxTabs);
+    // console.log(reduxTabs);
   }, [reduxTabs]);
   return (
     <div className="newTab">

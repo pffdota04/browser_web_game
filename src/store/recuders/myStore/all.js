@@ -6,136 +6,93 @@ const initialState = {
     [
       {
         from: 0,
-        chat: "hôm qua",
-      },
-      {
-        from: -1,
-        chat: 17,
+        chat: "tuần trước",
       },
       {
         from: 1,
-        chat: 37,
+        chat: 58,
       },
       {
         from: -1,
-        chat: 38,
+        chat: 59,
       },
       {
         from: 1,
-        chat: 39,
+        chat: 60,
       },
       {
         from: 1,
-        chat: 40,
+        chat: 61,
+      },
+      {
+        from: 1,
+        chat: 62,
       },
       {
         from: -1,
-        chat: 41,
-      },
-      {
-        from: 1,
-        chat: 42,
-      },
-      {
-        from: -1,
-        chat: 6,
+        chat: 63,
       },
       {
         from: 0,
-        chat: "2:14am",
+        chat: "2 ngày trước",
       },
       {
-        from: -1,
-        chat: 21,
-      },
-      {
-        from: -1,
+        from: 1,
         chat: 64,
-      },
-      {
-        from: -1,
-        chat: 26,
       },
       {
         from: -1,
         chat: 65,
       },
       {
-        from: -1,
-        chat: 22,
+        from: 1,
+        chat: 66,
       },
       {
         from: -1,
-        chat: 24,
-      },
-    ],
-
-    [
-      {
-        from: -1,
-        chat: 1,
+        chat: 67,
       },
       {
         from: 1,
-        chat: 13,
-      },
-      {
-        from: -1,
-        chat: 14,
-      },
-      {
-        from: 1,
-        chat: 4,
+        chat: 68,
       },
       {
         from: 0,
-        chat: "hôm qua",
+        chat: "15:30",
       },
       {
         from: 1,
-        chat: 50,
-      },
-      {
-        from: 1,
-        chat: 51,
+        chat: 69,
       },
       {
         from: -1,
-        chat: 52,
+        chat: 70,
       },
       {
         from: 1,
-        chat: 53,
+        chat: 71,
       },
       {
         from: -1,
-        chat: 54,
+        chat: 72,
       },
       {
         from: 1,
-        chat: 55,
-      },
-      {
-        from: 1,
-        chat: 56,
-      },
-      {
-        from: -1,
-        chat: 57,
-      },
-      {
-        from: -1,
-        chat: 58,
+        chat: 73,
       },
     ],
     [
       {
-        from: 1,
-        chat: 44,
+        from: -1,
+        chat: 42,
       },
       {
         from: 1,
         chat: 43,
+      },
+      {
+        from: 1,
+        chat: 44,
       },
       {
         from: -1,
@@ -146,7 +103,12 @@ const initialState = {
         chat: 46,
       },
       {
-        from: 1,
+        from: 0,
+        chat: "hôm qua",
+      },
+
+      {
+        from: -1,
         chat: 47,
       },
       {
@@ -154,56 +116,82 @@ const initialState = {
         chat: 48,
       },
       {
-        from: 1,
-        chat: 10,
-      },
-      {
         from: -1,
         chat: 49,
       },
-    ],
-    [
-      {
-        from: -1,
-        chat: 59,
-      },
-      {
-        from: -1,
-        chat: 59,
-      },
       {
         from: 1,
-        chat: 59,
-      },
-      {
-        from: 1,
-        chat: 59,
-      },
-      {
-        from: -1,
-        chat: 59,
+        chat: 50,
       },
     ],
     [
       {
         from: 1,
-        chat: 60,
+        chat: 51,
+      },
+      {
+        from: 1,
+        chat: 52,
       },
       {
         from: -1,
-        chat: 61,
+        chat: 53,
+      },
+      {
+        from: 1,
+        chat: 54,
       },
       {
         from: -1,
-        chat: 62,
+        chat: 55,
+      },
+      {
+        from: 1,
+        chat: 56,
       },
       {
         from: -1,
-        chat: 63,
+        chat: 57,
+      },
+    ],
+    [
+      {
+        from: -1,
+        chat: 74,
+      },
+      {
+        from: -1,
+        chat: 74,
+      },
+      {
+        from: 1,
+        chat: 74,
+      },
+      {
+        from: 1,
+        chat: 74,
+      },
+      {
+        from: -1,
+        chat: 74,
+      },
+    ],
+    [
+      {
+        from: 1,
+        chat: 69,
+      },
+      {
+        from: -1,
+        chat: 75,
       },
     ],
   ],
-  messMove: {},
+  messMove0: 0,
+  messMove1: 81,
+  messMove2: 79,
+  messMove3: 0,
+  messMove4: 69,
   ytbMove: {},
 };
 
@@ -236,6 +224,31 @@ const listTatCa = (state = initialState, action) => {
       return {
         ...state,
         messMove: action.payload,
+      };
+    case "SET_MESS_0":
+      return {
+        ...state,
+        messMove0: action.payload,
+      };
+    case "SET_MESS_1":
+      return {
+        ...state,
+        messMove1: action.payload,
+      };
+    case "SET_MESS_2":
+      return {
+        ...state,
+        messMove2: action.payload,
+      };
+    case "SET_MESS_3":
+      return {
+        ...state,
+        messMove3: action.payload,
+      };
+    case "SET_MESS_4":
+      return {
+        ...state,
+        messMove4: action.payload,
       };
     case "SET_YTB":
       return {

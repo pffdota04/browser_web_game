@@ -11,7 +11,7 @@ const Header = (props) => {
   const reduxSelectedTab = useSelector((state) => state.listTatCa.nowTabs);
 
   useEffect(() => {
-    console.log(reduxTabs);
+    // console.log(reduxTabs);
     let optab = localStorage.getItem("openTab");
     if (!optab && optab !== undefined) {
       localStorage.setItem("openTab", JSON.stringify(reduxTabs));
@@ -22,43 +22,33 @@ const Header = (props) => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   const optab = JSON.parse(localStorage.getItem("openTab"));
-  //   if (optab !== tabs) localStorage.setItem("openTab", JSON.stringify(tabs));
-  //   if (optab !== null && optab.length < tabs.length) {
-  //     document.getElementById("nav-" + (tabs.length - 1)).click();
-  //   }
-  //   dispatch(setTabsRedux(tabs));
-  //   props.setTabsApp(tabs);
-  // }, [tabs]);
-
   useEffect(() => {
     const optab = JSON.parse(localStorage.getItem("openTab"));
     if (optab !== reduxTabs && optab !== undefined)
       // console.log("CHANGEEEEEEEE");
       localStorage.setItem("openTab", JSON.stringify(reduxTabs));
+
     if (optab !== null && optab.length < reduxTabs.length) {
+      //new tab
+      document.getElementById("nav-" + (reduxTabs.length - 1)).click();
+    } else if (optab !== null && optab.length > reduxTabs.length) {
+      // xoa tab nhay ve tab cuoi
       document.getElementById("nav-" + (reduxTabs.length - 1)).click();
     }
     props.setTabsApp(reduxTabs);
   }, [reduxTabs]);
 
-  // useEffect(() => {
-  //   localStorage.setItem("selectedTab", JSON.stringify(selectedTab));
-  //   props.setSelectedTabApp(selectedTab);
-  //   dispatch(setNowTabRedux(selectedTab));
-  // }, [selectedTab]);
   useEffect(() => {
     localStorage.setItem("selectedTab", JSON.stringify(reduxSelectedTab));
     props.setSelectedTabApp(reduxSelectedTab);
   }, [reduxSelectedTab]);
 
   const rmTab = (pos) => {
-    // let cp = [...tabs];
-    let cp = [...reduxTabs];
-    cp.splice(pos, 1);
-    // setTabs(cp);
-    dispatch(setTabsRedux(cp));
+    if (reduxTabs.length !== 1) {
+      let cp = [...reduxTabs];
+      cp.splice(pos, 1);
+      dispatch(setTabsRedux(cp));
+    }
   };
 
   const rederTabs = (tab, pos) => {
@@ -203,7 +193,6 @@ const Header = (props) => {
           <button
             class="nav-link"
             onClick={() => {
-              // setTabs((prev) => [...prev, 0]);
               dispatch(setTabsRedux([...reduxTabs, 0]));
             }}
           >

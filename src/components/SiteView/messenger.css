@@ -32,9 +32,15 @@
 
 .choose-item:hover {
   transition: all 0.3s;
-  border: solid 3px rgb(255, 255, 1);
   background-color: rgb(255, 0, 0) !important;
 }
+
+.send-img{
+  max-width: 300px;
+  min-width: 200px;
+}
+
+
 
 @media (max-width: 400px) {
   .messChatName {
