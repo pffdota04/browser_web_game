@@ -18,7 +18,7 @@ const NewTab = () => {
           src="https://img.icons8.com/external-prettycons-flat-prettycons/32/000000/external-messenger-social-media-prettycons-flat-prettycons.png"
           width={80}
           alt="something"
-          className="border border-2 m-2 p-1"
+          className="border border-2 m-2 p-1 hover-point"
           onClick={() => {
             let cp = [...reduxTabs];
             cp[reduxSelectedTab] = 1;
@@ -28,7 +28,7 @@ const NewTab = () => {
         <img
           src="https://img.icons8.com/color/80/000000/youtube-play.png"
           width={80}
-          className="border border-2 m-2"
+          className="border border-2 m-2 hover-point"
           alt="something"
           onClick={() => {
             let cp = [...reduxTabs];
@@ -39,7 +39,7 @@ const NewTab = () => {
         <img
           src="https://en.apkshki.com/storage/4369/icon_5f0f28769f545_4369_w256.png"
           width={80}
-          className="border border-2 m-2 p-2"
+          className="border border-2 m-2 p-2 hover-point"
           alt="something"
           onClick={() => {
             let cp = [...reduxTabs];
