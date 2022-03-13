@@ -1,5 +1,5 @@
 import "./youtube.css";
-import {  useState } from "react";
+import { useState } from "react";
 
 const Youtube = () => {
   const data = [
@@ -39,8 +39,40 @@ const Youtube = () => {
       comment: "Tính năng bình luận đã bị tắt.",
       id: "EkDN7TqOG2c",
     },
+    {
+      title: "Xin vĩnh biệt cụ",
+      view: "1.085.659 lượt xem",
+      like: "5,9 N",
+      author: "Huy Nguyễn",
+      sub: "1,51 N người đăng ký",
+      comment: "Tính năng bình luận đã bị tắt.",
+      id: "qsr_y6PdbFE",
+    },
+    {
+      title: "Why So Serious",
+      view: "1.186 lượt xem",
+      like: "14",
+      author: "Zky Studio Ch.",
+      sub: "hidden",
+      comment: "Tính năng bình luận đã bị tắt.",
+      id: "VaYljknzCkQ",
+    },
   ];
   const [nowShow, setNowShow] = useState(0);
+  const [search, setSearch] = useState("");
+
+  const letSearch = () => {
+    if (search == "qsr_y6PdbFE") {
+      setNowShow(4);
+    } else if (search == "VaYljknzCkQ") {
+      setNowShow(5);
+    } else if (search == "dQw4w9WgXcQ") {
+      setNowShow(0);
+    }else{
+      alert("Tìm hong thấy bé ơi")
+    }
+  };
+
   return (
     <div className="youtube p-1">
       <div className="youtube-header row">
@@ -117,11 +149,13 @@ const Youtube = () => {
               placeholder="Tìm kiếm"
               aria-label="Tìm kiếm"
               aria-describedby="button-addon2"
+              onChange={(e) => setSearch(e.target.value)}
             />
             <button
               class="btn btn-outline-secondary"
               type="button"
               id="button-addon2"
+              onClick={() => letSearch()}
             >
               🔍
             </button>
@@ -201,7 +235,7 @@ const Youtube = () => {
         <div className="col-12 col-lg-4">
           <p className="text-start fw-bold mb-1">Video gợi ý</p>
           {data.map((e, i) => {
-            if (i != nowShow)
+            if (i != nowShow && i != 4 && i != 5)
               return (
                 <div
                   className="row mb-2 hover-point"

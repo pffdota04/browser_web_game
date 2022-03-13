@@ -42,6 +42,7 @@ const Messenger = () => {
 
   const [typing, setTyping] = useState(false);
   const [init, setInit] = useState(true);
+  const [reason, setReason] = useState("");
 
   const dispatch = useDispatch();
 
@@ -55,8 +56,12 @@ const Messenger = () => {
   useEffect(() => {
     let a = document.querySelector(".chat-content-user");
     a.scrollTop = a.scrollHeight;
-    console.log(".");
-  }, [chats, messMove0, messMove1, messMove2, messMove3, messMove4]);
+    // console.log(".");
+  });
+
+  useEffect(() => {
+    setTyping(false);
+  }, [chats]);
 
   useEffect(() => {
     if (init === false) {
@@ -67,9 +72,18 @@ const Messenger = () => {
           moveRefulf[0].map((e) => {
             copychat[0].push({ from: -1, chat: e });
           });
+          // -2 bị chặn, -3 gái chết, -4 bạn chết, -5 cảnh sát bắn, -9 win1, 176 true,
+          let To = moveRefulf[1][0];
+          if (To == -2) setReason("Cô ấy không cần bạn nữa, đồ tồi.");
+          else if (To == 176) setReason("TRUE ENDING!!! Now, wake up");
+          else if (To == -3) setReason("Cô ấy đã bị giết");
+          else if (To == -5) setReason("Bạn đã chết vì bị cảnh sát bắn");
+          else if (To == -4) setReason("Bạn đã chết");
+          else if (To == -9) setReason("Bạn đã cứu được cô ấy, chúc mừng!");
+          else if (To == -1) setReason("GAME IS OVER?");
+
           dispatch(setChatContent(copychat));
         }
-        setTyping(false);
       }, 2000);
     }
   }, [messMove0]);
@@ -84,7 +98,7 @@ const Messenger = () => {
           dispatch(setChatContent(copychat));
         }
         setTyping(false);
-      }, 2000);
+      }, 1000);
     }
   }, [messMove1]);
 
@@ -128,7 +142,7 @@ const Messenger = () => {
           dispatch(setChatContent(copychat));
         }
         setTyping(false);
-      }, 2000);
+      }, 500);
     }
   }, [messMove2]);
 
@@ -139,6 +153,10 @@ const Messenger = () => {
       case 0: {
         dispatch(setMessRedux0(To));
         let copychat = [...chats];
+        console.log(To);
+        if (To == 39) {
+          copychat[3].push({ from: -1, chat: 103 });
+        }
         copychat[0].push({ from: 1, chat: To });
         return;
       }
@@ -172,8 +190,51 @@ const Messenger = () => {
   };
 
   const selectMove = () => {
-    if (ChatMove(messMove0)[1][0] == -1) alert("YOU LOSE");
-    if (nowChat === 3) {
+    // -2 bị chặn, -3 gái chết, -4 bạn chết, -5 cảnh sát bắn, -9 win1, 176 true,
+    let cm = ChatMove(messMove0)[1][0];
+    if (nowChat == 0) {
+      if (cm == -3) {
+        return (
+          <div className="row text-center m-0 text-light">
+            <div className="col-12 col-sm-6 p-1 text-dark mx-auto">
+              Cô ấy đã bị giết
+            </div>{" "}
+          </div>
+        );
+      } else if (cm == -4) {
+        return (
+          <div className="row text-center m-0 text-light">
+            <div className="col-12 col-sm-6 p-1 text-dark mx-auto">
+              Bạn đã chết
+            </div>{" "}
+          </div>
+        );
+      } else if (cm == -5) {
+        return (
+          <div className="row text-center m-0 text-light">
+            <div className="col-12 col-sm-6 p-1 text-dark mx-auto">
+              Bạn đã chết vì bị cảnh sát bắn
+            </div>{" "}
+          </div>
+        );
+      } else if (cm == -9) {
+        return (
+          <div className="row text-center m-0 text-light">
+            <div className="col-12 col-sm-6 p-1 text-dark mx-auto">
+              Bạn đã cứu được cô ấy, chúc mừng!
+            </div>{" "}
+          </div>
+        );
+      } else if (cm == 176) {
+        return (
+          <div className="row text-center m-0 text-light">
+            <div className="col-12 col-sm-6 p-1 text-dark mx-auto">
+              TRUE ENDING!!! Now, wake up
+            </div>{" "}
+          </div>
+        );
+      }
+    } else if (nowChat === 3) {
       return (
         <div className="row text-center m-0 text-light">
           <div className="col-12 col-sm-6 p-1 text-dark mx-auto">
@@ -181,97 +242,106 @@ const Messenger = () => {
           </div>{" "}
         </div>
       );
-    } else
+    }
+    if (cm == -2 && nowChat == 0) {
       return (
         <div className="row text-center m-0 text-light">
-          <div className={"col-12 col-sm-6 p-1  mx-auto"}>
+          <div className="col-12 col-sm-6 p-1 text-dark mx-auto">
+            Bạn đã bị chặn (YOU LOSE)
+          </div>{" "}
+        </div>
+      );
+    }
+    return (
+      <div className="row text-center m-0 text-light">
+        <div className={"col-12 col-sm-6 p-1  mx-auto"}>
+          <div
+            className="m-0 w-100 bg-danger choose-item fw-bold hover-point"
+            onClick={() => {
+              switch (nowChat) {
+                case 0:
+                  chooseMove(ChatMove(messMove0)[1][0]);
+                  break;
+                case 1:
+                  chooseMove(ChatMove(messMove1)[1][0]);
+                  break;
+                case 2:
+                  chooseMove(ChatMove(messMove2)[1][0]);
+                  break;
+                case 3:
+                  chooseMove(ChatMove(messMove3)[1][0]);
+                  break;
+                case 4:
+                  chooseMove(ChatMove(messMove4)[1][0]);
+                  break;
+                default:
+                  break;
+              }
+            }}
+          >
+            {/* {convertChat[ChatMove(messMove0)[1][0]]} */}
+            {nowChat === 0
+              ? convertChat[ChatMove(messMove0)[1][0]]
+              : nowChat === 1
+              ? convertChat[ChatMove(messMove1)[1][0]]
+              : nowChat === 2
+              ? convertChat[ChatMove(messMove2)[1][0]]
+              : nowChat === 3
+              ? convertChat[ChatMove(messMove3)[1][0]]
+              : convertChat[ChatMove(messMove4)[1][0]]}
+
+            {/* _{" "} */}
+            {/* {ChatMove(messMove0)[1][0]} */}
+          </div>
+        </div>
+        {((nowChat === 0 && ChatMove(messMove0)[1].length > 1) ||
+          (nowChat === 1 && ChatMove(messMove1)[1].length > 1) ||
+          (nowChat === 2 && ChatMove(messMove2)[1].length > 1) ||
+          (nowChat === 3 && ChatMove(messMove3)[1].length > 1) ||
+          (nowChat === 4 && ChatMove(messMove4)[1].length > 1)) && (
+          <div className="col-12 col-sm-6 p-1">
             <div
-              className="m-0 w-100 bg-danger choose-item fw-bold hover-point"
+              className="m-0 w-100 bg-danger choose-item  fw-bold hover-point"
               onClick={() => {
+                // chooseMove(ChatMove(messMove0)[1][1]);
                 switch (nowChat) {
                   case 0:
-                    chooseMove(ChatMove(messMove0)[1][0]);
+                    chooseMove(ChatMove(messMove0)[1][1]);
                     break;
                   case 1:
-                    chooseMove(ChatMove(messMove1)[1][0]);
+                    chooseMove(ChatMove(messMove1)[1][1]);
                     break;
                   case 2:
-                    chooseMove(ChatMove(messMove2)[1][0]);
+                    chooseMove(ChatMove(messMove2)[1][1]);
                     break;
                   case 3:
-                    chooseMove(ChatMove(messMove3)[1][0]);
+                    chooseMove(ChatMove(messMove3)[1][1]);
                     break;
                   case 4:
-                    chooseMove(ChatMove(messMove4)[1][0]);
+                    chooseMove(ChatMove(messMove4)[1][1]);
                     break;
                   default:
                     break;
                 }
               }}
             >
-              {/* {convertChat[ChatMove(messMove0)[1][0]]} */}
+              {/* {convertChat[ChatMove(messMove0)[1][1]]} */}
               {nowChat === 0
-                ? convertChat[ChatMove(messMove0)[1][0]]
+                ? convertChat[ChatMove(messMove0)[1][1]]
                 : nowChat === 1
-                ? convertChat[ChatMove(messMove1)[1][0]]
+                ? convertChat[ChatMove(messMove1)[1][1]]
                 : nowChat === 2
-                ? convertChat[ChatMove(messMove2)[1][0]]
+                ? convertChat[ChatMove(messMove2)[1][1]]
                 : nowChat === 3
-                ? convertChat[ChatMove(messMove3)[1][0]]
-                : convertChat[ChatMove(messMove4)[1][0]]}
-
+                ? convertChat[ChatMove(messMove3)[1][1]]
+                : convertChat[ChatMove(messMove4)[1][1]]}
               {/* _{" "} */}
-              {/* {ChatMove(messMove0)[1][0]} */}
+              {/* {ChatMove(messMove0)[1][1]} */}
             </div>
           </div>
-          {((nowChat === 0 && ChatMove(messMove0)[1].length > 1) ||
-            (nowChat === 1 && ChatMove(messMove1)[1].length > 1) ||
-            (nowChat === 2 && ChatMove(messMove2)[1].length > 1) ||
-            (nowChat === 3 && ChatMove(messMove3)[1].length > 1) ||
-            (nowChat === 4 && ChatMove(messMove4)[1].length > 1)) && (
-            <div className="col-12 col-sm-6 p-1">
-              <div
-                className="m-0 w-100 bg-danger choose-item  fw-bold hover-point"
-                onClick={() => {
-                  // chooseMove(ChatMove(messMove0)[1][1]);
-                  switch (nowChat) {
-                    case 0:
-                      chooseMove(ChatMove(messMove0)[1][1]);
-                      break;
-                    case 1:
-                      chooseMove(ChatMove(messMove1)[1][1]);
-                      break;
-                    case 2:
-                      chooseMove(ChatMove(messMove2)[1][1]);
-                      break;
-                    case 3:
-                      chooseMove(ChatMove(messMove3)[1][1]);
-                      break;
-                    case 4:
-                      chooseMove(ChatMove(messMove4)[1][1]);
-                      break;
-                    default:
-                      break;
-                  }
-                }}
-              >
-                {/* {convertChat[ChatMove(messMove0)[1][1]]} */}
-                {nowChat === 0
-                  ? convertChat[ChatMove(messMove0)[1][1]]
-                  : nowChat === 1
-                  ? convertChat[ChatMove(messMove1)[1][1]]
-                  : nowChat === 2
-                  ? convertChat[ChatMove(messMove2)[1][1]]
-                  : nowChat === 3
-                  ? convertChat[ChatMove(messMove3)[1][1]]
-                  : convertChat[ChatMove(messMove4)[1][1]]}
-                {/* _{" "} */}
-                {/* {ChatMove(messMove0)[1][1]} */}
-              </div>
-            </div>
-          )}
-        </div>
-      );
+        )}
+      </div>
+    );
   };
 
   return (
@@ -283,7 +353,7 @@ const Messenger = () => {
             alt="something"
             className="d-none d-sm-inline-block"
           />{" "}
-          <strong>CHATS {nowChat}</strong>
+          <strong>CHATS</strong>
         </div>
         <hr />
         {chatName.map((e, i) => (
@@ -403,6 +473,7 @@ const Messenger = () => {
               <div className=" end-chat"></div>
             </ul>
           </div>
+
           {!typing ? (
             <div className="your-choose border border-1 border-bottom-3">
               {/* <p className="text-center m-0">Gửi tin nhắn</p> */}
@@ -415,6 +486,53 @@ const Messenger = () => {
           )}
         </div>
       </div>
+
+      {reason !== "" && (
+        <div
+          class="modal mess-show d-block "
+          id="exampleModal"
+          tabindex="1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Thông báo
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">{reason}</div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  // data-bs-dismiss="modal"
+                  onClick={() => setReason("")}
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onClick={() => {
+                    localStorage.clear();
+                    window.location.reload();
+                  }}
+                >
+                  Chơi lại
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -11,7 +11,7 @@ const Page404 = () => {
             <li> Checking the connection</li>
             <li> Checking the proxy and the firewall</li>
           </ul>{" "}
-          ERR_BECAUSE_I_DON'T_WANT
+          ERR_CAUSE_I_DON'T_WANT
         </div>
       </div>
     </div>

@@ -15,10 +15,10 @@ const NewTab = () => {
     <div className="newTab">
       <div className="newTab-icon ">
         <img
-          src="https://img.icons8.com/external-prettycons-flat-prettycons/32/000000/external-messenger-social-media-prettycons-flat-prettycons.png"
+          src="https://seeklogo.com/images/F/facebook-messenger-new-2020-logo-30E9B0E51B-seeklogo.com.png"
           width={80}
           alt="something"
-          className="border border-2 m-2 p-1 hover-point"
+          className="border border-2 m-2 p-3   hover-point"
           onClick={() => {
             let cp = [...reduxTabs];
             cp[reduxSelectedTab] = 1;
@@ -38,6 +38,17 @@ const NewTab = () => {
         />
         <img
           src="https://en.apkshki.com/storage/4369/icon_5f0f28769f545_4369_w256.png"
+          width={80}
+          className="border border-2 m-2 p-2 hover-point"
+          alt="something"
+          onClick={() => {
+            let cp = [...reduxTabs];
+            cp[reduxSelectedTab] = 9;
+            dispatch(setTabsRedux(cp));
+          }}
+        />{" "}
+        <img
+          src="https://brandlogos.net/wp-content/uploads/2016/11/twitter-icon-circle-blue-logo-preview-400x400.png"
           width={80}
           className="border border-2 m-2 p-2 hover-point"
           alt="something"
