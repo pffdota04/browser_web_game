@@ -1,4 +1,4 @@
-# This repo this not all code
+# This repo is not all code
 |
 |
 |
